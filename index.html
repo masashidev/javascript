@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="src/style.css">
+  <title>Document</title>
+</head>
+<body>
+  <main class="container">
+    <h1>this inside container</h1>
+
+  </main>
+  <form action="index.html" method="post">
+    <input type="text" name="name" value="">
+    <input type="text" name="email" value="">
+    <input type="text" name="password" value="">
+    <input type="submit" name="submit" value="submit">
+  </form>
+  <div class="button-list">
+    <button type="button" name="button">create</button>
+    <button type="button" name="button">increase</button>
+    <button type="button" name="button">decrease</button>
+    <button type="button" name="button">delete</button>
+
+  </div>
+  <script>
+    const button = document.querySelector('button');
+    button.addEventListener('click', () => {
+      alert('button clicked');
+    });
+  </script>
+</body>
+</html>
