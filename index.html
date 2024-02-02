@@ -4,31 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;500;900&family=Workbench&display=swap" rel="stylesheet">
   <title>Document</title>
 </head>
 <body>
   <main class="container">
-    <h1>this inside container</h1>
+  <div class="title">
+    <h1>THIS IS TITLE</h1>
+  </div>
 
-  </main>
+
   <form action="index.html" method="post">
     <input type="text" name="name" value="">
     <input type="text" name="email" value="">
     <input type="text" name="password" value="">
     <input type="submit" name="submit" value="submit">
   </form>
-  <div class="button-list">
-    <button type="button" name="button">create</button>
-    <button type="button" name="button">increase</button>
-    <button type="button" name="button">decrease</button>
-    <button type="button" name="button">delete</button>
+  <div class="content-panel">
+    <div class="button-list">
+      <button type="button" name="button" onclick="createParagraph()"
+      ><span>CREATE</span></button>
+      <button type="button" name="button"><span>INCREASE</span></button>
+      <button type="button" name="button"><span>DECREASE</span></button>
 
+      <button type="button" name="button"><span>DELETE</span></button>
+      <button type="button" name="button" onclick="reset()"><span>RESET</span></button>
+    </div>
+    <div class="meta-data">
+      <p>COUNT:<span id="count">0</span></p>
+    </div>
   </div>
+  <ul id="button-result">
+
+  </ul>
+
+  </main>
   <script>
-    const button = document.querySelector('button');
-    button.addEventListener('click', () => {
-      alert('button clicked');
-    });
+    // Create a new paragraph element
+    function createParagraph() {
+      let newParagraph = document.createElement('li');
+      newParagraph.textContent = 'This is a new paragraph.';
+
+      // Select the container div
+      let buttonResult = document.getElementById('button-result');
+
+      // Append the new paragraph as the last child of the container
+      buttonResult.appendChild(newParagraph);
+      countSentences();
+    }
+
+    function reset() {
+      let buttonResult = document.getElementById('button-result');
+      buttonResult.textContent = '';
+      countSentences();
+    }
+
+    function countSentences() {
+      let count = document.getElementById('count');
+      let elementAmount = document.getElementById('button-result').childElementCount;
+      count.textContent = elementAmount;
+    }
+
   </script>
 </body>
 </html>

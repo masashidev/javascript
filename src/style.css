@@ -1,3 +1,9 @@
+body, input, button, select, textarea{
+  font-family: Workbench, Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
 h1 {
   font-size: 3em;
   color: #99BC85;
@@ -8,8 +14,21 @@ h1 {
   padding: 0;
   background-color: #f4f4f4;
 }
+
+.title{
+  text-align: center;
+  padding: 20px;
+  font-size: 1.4em;
+  color: #99BC85;
+}
+
+.content-panel{
+  display: flex;
+  padding: 20px;
+  background-color: #E1F0DA;
+}
 .button-list {
-  display: inline-flex;
+  display: flex;
   justify-content: start;
   align-items: center;
   padding: 40px;
@@ -19,17 +38,35 @@ h1 {
   background-color: #99BC85; /* Green background */
   color: white; /* White text */
   text-decoration: none; /* No underline on text */
-  font-size: 16px; /* Text size */
+  font-size: 12px; /* Text size */
 
   width: 80px; /* Width of the button */
   height: 80px; /* Height of the button */
 
   margin: 10px; /* Margin around the button */
   padding: 30px 20px; /* Top and bottom padding, left and right padding */
+  display: flex;
+  text-align: center; /* Center text */
+  justify-content: center;
 
-  border: 3px solid rgb(6, 104, 27); /* No border */
-  border-radius: 50%; /* Fully rounded corners */
+  border: 1px solid rgb(76, 169, 96); /* No border */
+  border-radius: 100%; /* Fully rounded corners */
 
   cursor: pointer; /* Pointer cursor on hover */
   box-shadow: 0px 30px 40px -20px rgba(0,0,0,1); /* Box shadow */
+
+  position: relative
+}
+
+.meta-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #E1F0DA;
+}
+
+#button-result {
+  background-color: #E1F0DA;
+  
 }
