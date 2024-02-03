@@ -4,6 +4,10 @@ body, input, button, select, textarea{
   padding: 0;
   background-color: #f4f4f4;
 }
+
+body {
+  padding-bottom: 400px;
+}
 h1 {
   font-size: 3em;
   color: #99BC85;
@@ -34,7 +38,7 @@ h1 {
   padding: 3px;
   background-color: #E1F0DA;
 }
-.button-list button {
+.button-list button, .button2 {
   background-color: #99BC85; /* Green background */
   color: white; /* White text */
   text-decoration: none; /* No underline on text */
@@ -103,7 +107,7 @@ h1 {
 }
 
 .grid-item {
-  background-color: #99BC85;
+  background-color: #99bc85;
   color: white;
   border: 5px solid #757575;
 
@@ -119,4 +123,9 @@ h1 {
 
   cursor: pointer;
 
+  transition: background-color 0.15s ease;
+}
+.grid-item:hover {
+  background-color: #bae3a2;
+  color: #99BC85;
 }
