@@ -42,7 +42,7 @@
   <ul id="button-result">
   </ul>
 
-  <div class="gird">
+  <div class="grid">
     <div class="grid-item">
       <p>1</p>
     </div>
@@ -158,6 +158,21 @@
       insertingHtml.textContent = wholeHtml;
     }
 
+    function randamizedNumber() {
+      let number = Math.floor(Math.random() * 100);
+      return number;
+    }
+
+    function updateGridNumber(event) {
+      event.target.textContent = randamizedNumber();
+    }
+
+    let gridItems = document.querySelectorAll('.grid-item');
+    console.log(gridItems);
+
+    girdItems.forEach(function(gridItem) {
+      gridItem.addEventListener('click', updateGridNumber);
+    });
   </script>
 </body>
 </html>
