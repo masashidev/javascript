@@ -23,7 +23,34 @@
     <button class="counter-button">Increment</button>
   </div>
 
+  <div class="hover-element">
+    <div class="hover-display">
+      <p>Hover over me</p>
+    </div>
+  </div>
+
   <script>
+    const hoverElement = document.querySelector('.hover-element');
+    let interval;
+    let isColorOne = true;
+    const colorOne = '#FFE4C9'
+    const colorTwo = '#E78895'
+    hoverElement.addEventListener('mouseover', () => {
+      interval = setInterval(() => {
+        if (isColorOne) {
+          hoverElement.style.backgroundColor = colorOne;
+          isColorOne = false;
+        } else {
+          hoverElement.style.backgroundColor = colorTwo;
+          isColorOne = true;
+        }
+      }, 1000);
+    });
+    hoverElement.addEventListener('mouseout', () => {
+      clearInterval(interval);
+      hoverElement.style.backgroundColor = '#99BC85';
+    });
+
 
     let counter = localStorage.getItem('counter');
     if (counter === null) {
@@ -49,7 +76,8 @@
       localStorage.setItem('counter', counter);
       document.querySelector('.display-counter').textContent = counter;
     });
-    
+
+
 
     const input = document.querySelector('.word-input');
     const word = input.value;

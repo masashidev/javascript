@@ -173,3 +173,11 @@ h1 {
 .history-box{
   display: block;
 }
+
+.hover-element {
+  background-color: #99BC85;
+  color: white;
+  margin: auto 100px;
+  padding: 10px;
+  transition: background-color 0.5s ease;
+}
