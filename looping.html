@@ -4,8 +4,89 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
   <h1>LOOPING through</h1>
+  <p class="js-random-number"></p>
+  <button onclick="changeButtonContent()" class="js-random-number-button"
+  >Change Number</button>
+
+  <input type="text" class="word-input" placeholder="word">
+  <button onclick="addWordToList()" class="word-submit">
+    <span>Submit</span>
+  </button>
+  <ul class="word-list">
+  </ul>
+  <div class="show-counter">
+    <p>Counter: <span class="display-counter"></span></p>
+    <button class="counter-button">Increment</button>
+  </div>
+
+  <script>
+
+    let counter = localStorage.getItem('counter');
+    if (counter === null) {
+      counter = 0;
+    } else {
+      counter = parseInt(counter);
+    }
+    document.querySelector('.display-counter').textContent = counter;
+    console.log(counter);
+    document.querySelector('.counter-button').addEventListener('click', incrementCounter);
+    document.querySelector('.counter-button').addEventListener('mouseout', () => {
+      counter--;
+      localStorage.setItem('counter', counter);
+      document.querySelector('.display-counter').textContent = counter;
+    });
+    function incrementCounter() {
+      counter++;
+      localStorage.setItem('counter', counter);
+      document.querySelector('.display-counter').textContent = counter;
+    }
+    document.querySelector('.show-counter').addEventListener('click', () => {
+      counter++;
+      localStorage.setItem('counter', counter);
+      document.querySelector('.display-counter').textContent = counter;
+    });
+    
+
+    const input = document.querySelector('.word-input');
+    const word = input.value;
+    const wordList = document.querySelector('.word-list');
+    const button = document.querySelector('button');
+
+    function addWordToList() {
+      const word = input.value;
+      const listItem = document.createElement('li');
+      listItem.textContent = word;
+      wordList.appendChild(listItem);
+      input.value = '';
+    }
+
+    function generateRandomNumber() {
+      return Math.floor(Math.random() * 100);
+    }
+
+    function displayRandomNumber() {
+      const randomNumberElement = document.querySelector('.js-random-number');
+      const randomNumber = generateRandomNumber();
+      randomNumberElement.textContent = randomNumber;
+    }
+    function changeButtonContent() {
+      let button = document.querySelector('.js-random-number-button');
+      const randomNumber = generateRandomNumber();
+      button.backgroundColor = 'red';
+    }
+    function matchButtonSizeWithNumber() {
+      button.style.fontSize = `${randomNumber}px`;
+    }
+    function handleButtonEvent() {
+      generateRandomNumber();
+      displayRandomNumber();
+      changeButtonContent();
+      matchButtonSizeWithNumber();
+    }
+  </script>
 </body>
 </html>

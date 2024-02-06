@@ -47,7 +47,7 @@ h1 {
   padding: 3px;
   background-color: #E1F0DA;
 }
-.button-list button, .button2 {
+.button-list button, .button2, button {
   background-color: #99BC85; /* Green background */
   color: white; /* White text */
   text-decoration: none; /* No underline on text */
