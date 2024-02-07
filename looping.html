@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Looping</title>
   <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
@@ -29,92 +29,16 @@
     </div>
   </div>
 
-  <script>
-    const hoverElement = document.querySelector('.hover-element');
-    let interval;
-    let isColorOne = true;
-    const colorOne = '#FFE4C9'
-    const colorTwo = '#E78895'
-    hoverElement.addEventListener('mouseover', () => {
-      interval = setInterval(() => {
-        if (isColorOne) {
-          hoverElement.style.backgroundColor = colorOne;
-          isColorOne = false;
-        } else {
-          hoverElement.style.backgroundColor = colorTwo;
-          isColorOne = true;
-        }
-      }, 1000);
-    });
-    hoverElement.addEventListener('mouseout', () => {
-      clearInterval(interval);
-      hoverElement.style.backgroundColor = '#99BC85';
-    });
+  <div class="change-sentences-box" style="display:flex;">
+    <p><span class="sentence-display" style=
+      "background-color:aquamarine;
+      width: 500px;"
+      >A</span></p>
+    <button class="stop-button">Stop</button>
+    <button class="start-button">Start</button>
+  </div>
 
-
-    let counter = localStorage.getItem('counter');
-    if (counter === null) {
-      counter = 0;
-    } else {
-      counter = parseInt(counter);
-    }
-    document.querySelector('.display-counter').textContent = counter;
-    console.log(counter);
-    document.querySelector('.counter-button').addEventListener('click', incrementCounter);
-    document.querySelector('.counter-button').addEventListener('mouseout', () => {
-      counter--;
-      localStorage.setItem('counter', counter);
-      document.querySelector('.display-counter').textContent = counter;
-    });
-    function incrementCounter() {
-      counter++;
-      localStorage.setItem('counter', counter);
-      document.querySelector('.display-counter').textContent = counter;
-    }
-    document.querySelector('.show-counter').addEventListener('click', () => {
-      counter++;
-      localStorage.setItem('counter', counter);
-      document.querySelector('.display-counter').textContent = counter;
-    });
-
-
-
-    const input = document.querySelector('.word-input');
-    const word = input.value;
-    const wordList = document.querySelector('.word-list');
-    const button = document.querySelector('button');
-
-    function addWordToList() {
-      const word = input.value;
-      const listItem = document.createElement('li');
-      listItem.textContent = word;
-      wordList.appendChild(listItem);
-      input.value = '';
-    }
-
-    function generateRandomNumber() {
-      return Math.floor(Math.random() * 100);
-    }
-
-    function displayRandomNumber() {
-      const randomNumberElement = document.querySelector('.js-random-number');
-      const randomNumber = generateRandomNumber();
-      randomNumberElement.textContent = randomNumber;
-    }
-    function changeButtonContent() {
-      let button = document.querySelector('.js-random-number-button');
-      const randomNumber = generateRandomNumber();
-      button.backgroundColor = 'red';
-    }
-    function matchButtonSizeWithNumber() {
-      button.style.fontSize = `${randomNumber}px`;
-    }
-    function handleButtonEvent() {
-      generateRandomNumber();
-      displayRandomNumber();
-      changeButtonContent();
-      matchButtonSizeWithNumber();
-    }
+  <script src="scripts/looping.js">
   </script>
 </body>
 </html>

@@ -179,5 +179,5 @@ h1 {
   color: white;
   margin: auto 100px;
   padding: 10px;
-  transition: background-color 0.5s ease;
+  transition: background-color 1s linear;
 }
