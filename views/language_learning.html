@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+  <style>
+    html {
+      height: 100%;
+    }
+    body {
+      display: flex; /* Make the body a flex container */
+      flex-direction: column; /* Stack child elements vertically */
+      justify-content: center; /* Center children vertically in the container */
+      align-items: center; /* Center children horizontally in the container */
+      font-family: 'Gamja Flower', cursive;
+      background-color: #F5E6CA;
+      margin: 0; /* Remove default margin */
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    #title{
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 1rem;
+      padding: 10px 20px;
+
+      background-color: #EBD9B4;
+      border-radius: 20px;
+
+      -webkit-text-stroke: 1px #000;
+      color: transparent;
+    }
+
+    #word-pair-form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+    #word-pair-form input {
+      margin: 0 5px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      border: 1px solid #000;
+      width: 50px;
+    }
+    #table-header {
+      width: 50%;
+      text-align: center;
+      border: 1px solid #000;
+      border-radius: 10px;
+
+    }
+    #language-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    }
+    #language-table tr th, #language-table tr td{
+      width: 100px;
+      margin: auto 0;
+    }
+    #language-table th:nth-child(3), #language-table td:nth-child(3) {
+      width: 20px; /* Adjust the width as needed to fit the delete button */
+    }
+
+
+
+    th, td {
+      border: 1px solid #000;
+      text-align: center;
+      padding: 1px 5px;
+      cursor: pointer;
+      transition: background-color 0.15s;
+    }
+
+    th, td:hover {
+      background-color: #EBD9B4;
+    }
+
+    .delete-button {
+      background-color: #F5E6CA;
+
+      border: none;
+      padding: 2px 6px;
+      width: 100%;
+      margin: 0;
+      cursor: pointer;
+      transition: background-color 0.15s;
+    }
+
+  </style>
+</head>
+<body>
+<div id="container">
+  <h1 id="title">Learning Language Game</h1>
+  <form id="word-pair-form">
+    <input type="text" id="german-input" placeholder="German">
+    <input type="text" id="english-input" placeholder="English">
+    <input id="add-button" type="submit" value="Add">
+  </form>
+  <table id="language-table">
+    <thead>
+      <tr id="table-header">
+        <th>German</th>
+        <th>English</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+    </tbody>
+  </table>
+  <script src="/scripts/language_learning.js"></script>
+</div>
+</body>
+</html>
