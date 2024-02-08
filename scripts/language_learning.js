@@ -6,8 +6,7 @@ const wordsData = [
   { german: 'es', english: 'it' },
 ]
 
-const wordPairHTML = generateWordPairHTML();
-
+const tableBody = document.getElementById('table-body');
 
 function generateWordPairHTML(wordsData) {
   return wordsData.map((wordPair, index) => `
@@ -44,3 +43,10 @@ addButton.addEventListener('click', function(event) {
     alert('Please fill in both fields');
   }
 } );
+
+document.getElementById('table-body').addEventListener('click', function(event) {
+  if (event.target.classList.contains('delete-button')) {
+    const index = event.target.getAttribute('data-index');
+    wordsData.splice(index, 1);
+    updateTable();
+  }});
