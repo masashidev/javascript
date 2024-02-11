@@ -10,23 +10,34 @@
   <style>
     body {
       font-family: 'Cute Font', cursive;
-      background-color: #FBF9F1;
+      background-color: #eaeaea;
       margin: 0;
+      overflow: hidden;
     }
-    .container {
+    #title {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 1rem;
+      padding: 10px 20px;
+      background-color: #EBD9B4;
+      border-radius: 20px;
+      -webkit-text-stroke: 1px #000;
+      color: transparent;
+    }
+    #grid-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
+      height: 70vh;
       padding: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Draggable Page</h1>
-  </div>
-  <script src="/scripts/draggable.js"></script>
+  <h1 id="title">Grid Page</h1>
+  <div id="grid-container"></div>
+  <script src="/scripts/grid.js"></script>
+  <script src="/scripts/header.js"></script>
 </body>
 </html>
