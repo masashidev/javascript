@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Indie+Flower&display=swap" rel="stylesheet">
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: 'Cute Font', sans-serif;
+      font-family: 'Indie Flower', cursive;
+    }
+    #container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: #E0CCBE;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .big-box {
+      width: 200px;
+      height: 200px;
+      background-color: #E0CCBE;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+<body>
+  <div id="container">
+    <div class="grid">
+    </div>
+  </div>
+  <script src="/scripts/normal_drag.js"></script>
+</body>
+</html>
