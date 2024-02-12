@@ -73,4 +73,17 @@ function getMousePosition(event) {
 // move the circle with the mouse
 document.addEventListener('mousemove', getMousePosition);
 
-const img = new
+window.onload = function() {
+  var img = document.createElement('img');
+  img.src = '/assets/images/pointer.png'; // Replace with the path to your image
+  img.classList.add('pointer-image'); // Use a class to style the image (size, etc.)
+  document.body.appendChild(img); // Append the image to the body or your specific container
+
+  // Function to update the image position based on the mouse position
+  function updateImagePosition(event) {
+  img.style.left = event.pageX + 'px';
+  img.style.top = event.pageY + 'px';
+  }
+
+  document.addEventListener('mousemove', updateImagePosition)
+}
