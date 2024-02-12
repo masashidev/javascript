@@ -18,7 +18,6 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      height: 100vh;
     }
     .box {
       width: 100px;
@@ -42,13 +41,38 @@
       align-items: center;
       cursor: pointer;
     }
+
+    #container2 {
+      background-color: #C9D7DD;
+      width: 500px;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .circle {
+      width: 30px;
+      height: 30px;
+      background-color: #637A9F;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      position: absolute;
+    }
   </style>
 
 </head>
 <body>
+  <audio id="sound-effect" src="/assets/sounds/soundeffect.wav" preload="auto"></audio>
   <div id="container">
     <div class="grid">
     </div>
+  </div>
+  <hr>
+  <div id="container2">
+
   </div>
   <script src="/scripts/normal_drag.js"></script>
 </body>
