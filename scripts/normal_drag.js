@@ -102,3 +102,16 @@ function pasteImage(event) {
 }
 
 document.addEventListener('click', pasteImage);
+
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    let pointer = document.querySelector('.pointer-image');
+    if (pointer) {
+      pointer.remove();
+    }
+    document.removeEventListener('mousemove', updateImagePosition);
+    document.removeEventListener('click', pasteImage);
+    console.log('Removed pointer image');
+  }
+});
