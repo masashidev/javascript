@@ -8,11 +8,20 @@
     body {
       padding: 0;
       margin: 0;
-      overflow: hidden;
+    }
+    #input {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+    .focused {
+      background-color: #E8C872;
     }
   </style>
 </head>
 <body>
+  <input type="text" id="input" placeholder="Hello">
+  <canvas id="cavnas"></canvas>
 
   <script src="/scripts/canvas_drag.js"></script>
 </body>

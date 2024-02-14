@@ -46,6 +46,35 @@ function selectItem(item) {
     item.classList.add('selected');
   }
 }
+function getOddEven(n) {
+  return n % 2 === 0 ? 'even' : 'odd';
+}
+function paintGrid(list) {
+  list.forEach((gridItem, index) => {
+    gridItem.classList.add(getOddEven(index));
+  });
+}
+function getGridItemPosition(item) {
+  const itemRect = item.getBoundingClientRect();
+  return {
+    x: itemRect.left + window.scrollX,
+    y: itemRect.top + window.scrollY
+  };
+}
+function changeGridIntoAbsolute() {
+  gridTable.style.position = 'relative';
+
+  gridList.forEach(gridItem => {
+    const rect = gridItem.getBoundingClientRect();
+    const parentRect = gridTable.getBoundingClientRect();
+    const relativeX = rect.left - parentRect.left;
+    const relativeY = rect.top - parentRect.top;
+
+    gridItem.style.position = 'absolute';
+    gridItem.style.left = `${relativeX}px`;
+    gridItem.style.top = `${relativeY}px`;
+  });
+}
 
 shuffleButton.addEventListener('click', shuffleGrid);
 resetButton.addEventListener('click', resetGrid);
@@ -63,3 +92,11 @@ gridTable.addEventListener('click', function(event) {
 
 createGrid();
 renderGrid();
+// paintGrid(gridList);
+// changeGridIntoAbsolute();
+const everyGridItemPositions = [];
+gridList.forEach(gridItem => {
+  const position = getGridItemPosition(gridItem);
+  everyGridItemPositions.push(position);
+})
+console.log(everyGridItemPositions);

@@ -1,114 +1,175 @@
-console.log('Hello from random_propositions.js');
+console.log('Hello from .js');
 
-let canvas = document.createElement('canvas');
+let canvas = document.querySelector('canvas');
 let body = document.querySelector('body');
 let ctx = canvas.getContext('2d');
-
-body.appendChild(canvas);
+let rectangles = [];
+let currentRectangleIndex = null;  // the rectangle that is being dragged
+let isDragging = false;
+let startX;
+let startY;
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-canvas.setAttribute('style', 'background-color: #D7E4C0;');
+canvas.style.backgroundColor = '#F1FADA';
 
-// resize canvas when window is resized
-window.addEventListener('resize', function() {
-  resizeCanvas();
-  rectangle.matchWidthToText();
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  rectangle.draw();
-  console.log('resize');
-});
+let canvasWidth = canvas.width;
+let canvasHeight = canvas.height;
+let offset_x;
+let offset_y;
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+function getOffset() {
+  let canvasOffset = canvas.getBoundingClientRect();
+  offset_x = canvasOffset.left;
+  offset_y = canvasOffset.top;
 }
 
-// define a class for a rectangle with text
-class Rectangle {
-  constructor(x, y, width, height, text) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.text = text;
+getOffset();
+window.onscroll = getOffset;
+window.onresize = getOffset;
+canvas.onscroll = getOffset;
+
+let textFont = '30px Arial';
+let textColor = 'black';
+
+function createRectangle(x, y, width, height, color, text) {
+  let rectangle = {
+    x: x,
+    y: y,
+    width: width,
+    height: height,
+    color: color,
+    text: text
+  };
+  rectangles.push(rectangle);
+}
+
+function drawRectangles() {
+  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+  rectangles.forEach(rectangle => {
+    ctx.fillStyle = rectangle.color;
+    ctx.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+    ctx.font = textFont;
+    ctx.fillStyle = textColor;
+    ctx.fillText(rectangle.text, rectangle.x + 10, rectangle.y + 30);
+  });
+}
+
+// focus on the rectangle
+
+function editRectangleText() {
+  let text = prompt('Enter text');
+  rectangles[currentRectangleIndex].text = text;
+  drawRectangles();
+}
+
+
+
+
+
+
+
+function isMouseOverRectangle(x, y, rectangle) {
+  return x >= rectangle.x && x <= rectangle.x + rectangle.width && y >= rectangle.y && y <= rectangle.y + rectangle.height;
+}
+
+function mouseDown(event) {
+  event.preventDefault();
+
+  startX = event.clientX - offset_x;
+  startY = event.clientY - offset_y;
+
+  let mouseOverRectangle = false;
+
+  rectangles.forEach(rectangle => {
+    if (isMouseOverRectangle(startX, startY, rectangle)) {
+      console.log('inside');
+      isDragging = true;
+      currentRectangleIndex = rectangles.indexOf(rectangle);
+      mouseOverRectangle = true;
+      console.log('currentRectangleIndex: ' + currentRectangleIndex);
+    }
+  });
+
+  if (!mouseOverRectangle) {
+    console.log('outside');
+    createRectangle(startX, startY, 100, 100, 'white', 'Hello');
+    drawRectangles();
+    console.log(rectangles);
   }
+};
 
-  draw() {
-    ctx.fillStyle = 'white';
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-    ctx.fillStyle = 'black';
-    ctx.font = '30px Arial';
-    ctx.fillText(this.text, this.x + 20, this.y + 50);
-
+function mouseUp(event) {
+  if (!isDragging) {
+    return;
   }
+  event.preventDefault();
+  isDragging = false;
+  currentRectangleIndex = null;
+}
 
-  // get pixel length of text
-  getTextWidth(text, font) {
-    ctx.font = font;
-    return ctx.measureText(text).width;
+function mouseOut(event) {
+  if (!isDragging) {
+    return;
   }
+  event.preventDefault();
+  isDragging = false;
+  currentRectangleIndex = null;
+}
 
-  // match the width of the rectangle to the width of the text
-  matchWidthToText() {
-    this.width = this.getTextWidth(this.text, '30px Arial') + 40;
-  }
-
-  // make the rectangle draggable
-  drag() {
-    let isDragging = false;
-    let offsetX, offsetY;
-
-    canvas.addEventListener('mousedown', function(event) {
-      if (event.x > this.x && event.x < this.x + this.width && event.y > this.y && event.y < this.y + this.height) {
-        isDragging = true;
-        offsetX = event.x - this.x;
-        offsetY = event.y - this.y;
-      }
-    });
-
-    canvas.addEventListener('mousemove', function(event) {
-      if (isDragging) {
-        this.x = event.x - offsetX;
-        this.y = event.y - offsetY;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        this.draw();
-      }
-    });
-
-    canvas.addEventListener('mouseup', function() {
-      isDragging = false;
-    });
-  }
-
-  // pointer over rectangle
-  pointerOver() {
-    canvas.addEventListener('mousemove', function(event) {
-      if (event.x > this.x && event.x < this.x + this.width && event.y > this.y && event.y < this.y + this.height) {
-        canvas.style.cursor = 'pointer';
-      } else {
-        canvas.style.cursor = 'default';
-      }
-    });
+function mouseMove(event) {
+  if (!isDragging) {
+    return;
+  } else {
+    event.preventDefault();
+    let mouseX = event.clientX;
+    let mouseY = event.clientY;
+    let dx = mouseX - startX;
+    let dy = mouseY - startY;
+    let currentRectangle = rectangles[currentRectangleIndex];
+    currentRectangle.x += dx;
+    currentRectangle.y += dy;
+    drawRectangles();
+    startX = mouseX;
+    startY = mouseY;
   }
 }
 
-// array of rectangles
-let rectangles = [];
 
-// add a new rectangle to the array
-let newRectangle = new Rectangle(100, 100, 200, 100, 'Hello');
-rectangles.push(newRectangle);
-let newRectangle2 = new Rectangle(500, 300, 200, 100, 'World');
-rectangles.push(newRectangle2);
 
-// draw all rectangles
-rectangles.forEach(rectangle => {
-  rectangle.draw();
-});
 
-// make the rectangle draggable
-rectangles.forEach(rectangle => {
-  rectangle.drag();
-  rectangle.pointerOver();
-});
+
+
+createRectangle(100, 100, 100, 100, 'white', 'Hello')
+drawRectangles();
+
+
+canvas.onmousedown = mouseDown;
+canvas.onmouseup = mouseUp;
+canvas.onmouseout = mouseOut;
+canvas.onmousemove = mouseMove;
+
+// get saved data from local storage
+// add rectangle to list
+// draw the canvas
+// draw the list
+
+// take input from user
+// when enter is pressed, create a rectangle with the input
+
+// create a rectangle where the user clicks
+// ask for input while focusing on the rectangle
+// when enter is pressed, the rectangle is created
+// resize the rectangle according to the input size
+
+// make rectangles resizable
+
+// make rectangles draggable
+// detect if the mouse is over the rectangle
+// detect if the mouse is clicked
+// detect if the mouse is moved
+// match the rectangle with the mouse
+// move the rectangle with the mouse
+// detect if the mouse is released
+// set position of the element where the mouse is released
+// remove the element from the list
