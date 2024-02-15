@@ -9,6 +9,10 @@ let isDragging = false;
 let startX;
 let startY;
 
+let deleteTimeout;
+
+let input = document.querySelector('input');
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 canvas.style.backgroundColor = '#F1FADA';
@@ -63,7 +67,24 @@ function editRectangleText() {
   drawRectangles();
 }
 
+function deleteRectangle() {
+  rectangles.splice(currentRectangleIndex, 1);
+  drawRectangles();
+}
 
+function takeUserInput() {
+  input.focus();
+  input.addEventListener('keyup', function(event) {
+    console.log(event.key);
+    if (event.key === 'Enter') {
+      let text = input.value;
+      createRectangle(100, 100, 100, 100, 'white', text);
+      drawRectangles();
+      input.value = '';
+      console.log(rectangles);
+    }
+  });
+}
 
 
 
@@ -88,8 +109,18 @@ function mouseDown(event) {
       currentRectangleIndex = rectangles.indexOf(rectangle);
       mouseOverRectangle = true;
       console.log('currentRectangleIndex: ' + currentRectangleIndex);
+
+      deleteTimeout = setTimeout(() => {
+        deleteRectangle();
+        console.log('rectangle deleted');
+
+      }, 500);
+
     }
   });
+
+  // add functionality for detecting the topmost rectangle and ignore the rest so that mousedown function will not be called for hte overlapped rectangles
+
 
   if (!mouseOverRectangle) {
     console.log('outside');
@@ -99,7 +130,12 @@ function mouseDown(event) {
   }
 };
 
+function clearDeleteTimeout() {
+  clearTimeout(deleteTimeout);
+}
+
 function mouseUp(event) {
+  clearDeleteTimeout();
   if (!isDragging) {
     return;
   }
@@ -118,6 +154,7 @@ function mouseOut(event) {
 }
 
 function mouseMove(event) {
+  clearDeleteTimeout();
   if (!isDragging) {
     return;
   } else {
@@ -148,6 +185,7 @@ canvas.onmousedown = mouseDown;
 canvas.onmouseup = mouseUp;
 canvas.onmouseout = mouseOut;
 canvas.onmousemove = mouseMove;
+input.onfocus = takeUserInput;
 
 // get saved data from local storage
 // add rectangle to list
