@@ -12,10 +12,29 @@
       overflow: hidden;
       touch-action: none ;
     }
+    #object {
+      width: 100px;
+      height: 100px;
+      background-color: #E0CCBE;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    }
   </style>
 </head>
 <body>
   <canvas id="canvas"></canvas>
+  <id id="object">
+
+  </id>
   <script src="/scripts/mobile_view_physics.js"></script>
+
+  <script src="/scripts/header.js"></script>
 </body>
 </html>
