@@ -35,3 +35,12 @@ fetch('../assets/JSON_data/data.json')
   .catch(error => console.error('Error:', error));
 
 console.log('Hello from network.js');
+
+
+// voice over
+
+// progress bar
+
+// button to start and stop
+
+// show current index of the word
