@@ -7,6 +7,11 @@ fetch('../assets/JSON_data/data.json')
     let currentIndex = 0;
 
     function updateContent(){
+
+      container.classList.toggle('fade-out');
+
+      setTimeout(() => {
+
       container.innerHTML = '';
       const item = data[currentIndex];
       const display = document.createElement('div');
@@ -23,19 +28,35 @@ fetch('../assets/JSON_data/data.json')
         display.appendChild(p);
       }
 
+      const current = document.createElement('div');
+      current.classList.add('current');
+      current.textContent = `${currentIndex + 1} / ${data.length}`;
+      container.appendChild(current);
+
       container.appendChild(display);
 
-      currentIndex = (currentIndex + 1) % data.length;
+      container.classList.toggle('fade-out');
 
+      currentIndex = (currentIndex + 1) % data.length;
+      }, 500);
     }
 
     updateContent();
-    // setInterval(updateContent, 1000);
+    setInterval(updateContent, 3000);
   })
   .catch(error => console.error('Error:', error));
 
 console.log('Hello from network.js');
 
+
+const target = document.getElementById('target');
+target.addEventListener('click', () => {
+  console.log('click');
+  target.classList.toggle('target-clicked');
+  setInterval(() => {
+    target.classList.toggle('target-clicked');
+  }, 200);
+} );
 
 // voice over
 

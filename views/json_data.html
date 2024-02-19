@@ -26,9 +26,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-
-
+      transition: opacity 0.5s ease;
+      opacity: 1;
     }
+
+     #container.fade-out {
+      opacity: 0;
+    }
+
     .display {
       background-color: #B5C0D0;
       width: 200px;
@@ -46,16 +51,26 @@
     #vocab {
       font-size: 3rem;
       text-decoration-line: underline;
-
     }
+
+
+    #target {
+      transition: opacity 0.2s ease;
+      opacity: 1;
+    }
+
+    #target.target-clicked {
+      opacity: 0.5;
+    }
+
   </style>
 </head>
 <body>
   <div class="title">
     <h1>German Vocabulary Automation</h1>
   </div>
-  <div id="container">
-  </div>
+  <div id="container"></div>
+  <p id="target">animation</p>
   <script src="/scripts/json_data.js"></script>
 </body>
 </html>
