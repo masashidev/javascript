@@ -3,6 +3,9 @@ fetch('../assets/JSON_data/data.json')
   .then(data => {
     console.log(data);
 
+    const smallList = document.getElementById('small-list');
+
+
     const container = document.getElementById('container');
     let currentIndex = 0;
 
@@ -42,7 +45,7 @@ fetch('../assets/JSON_data/data.json')
     }
 
     updateContent();
-    setInterval(updateContent, 3000);
+    // setInterval(updateContent, 3000);
   })
   .catch(error => console.error('Error:', error));
 
@@ -57,6 +60,29 @@ target.addEventListener('click', () => {
     target.classList.toggle('target-clicked');
   }, 200);
 } );
+
+
+// function addDanmakuMessage(message) {
+//   const container = document.getElementById('danmakuContainer');
+//   const newMessage = document.createElement('div');
+//   newMessage.classList.add('danmaku');
+//   newMessage.textContent = message;
+
+//   const yPos = Math.random() * (container.offsetHeight - 20);
+//   newMessage.style.top = `${yPos}px`;
+
+//   const duration = 5 + Math.random() * 5;
+//   newMessage.style.animation = `move ${duration}s linear`;
+
+//   container.appendChild(newMessage);
+
+//   newMessage.addEventListener('animationend', () => {
+//     container.removeChild(newMessage);
+//   });
+
+// }
+
+// addDanmakuMessage('Hello World!');
 
 // voice over
 

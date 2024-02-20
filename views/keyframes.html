@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    @keyframes slide {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(300px); }
+    100% { transform: translateX(0); }
+    }
+
+    @keyframes circulate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+    }
+
+    .animated-box {
+    width: 100px;
+    height: 100px;
+    background-color: #4CAF50;
+    color: white;
+    line-height: 100px;
+    text-align: center;
+    position: relative;
+    animation: slide 5s linear infinite;
+    }
+
+    .circle-container {
+    position: absolute;
+    top: 50%; /* Position at the top center of the container */
+    left: 50%; /* Position at the top center of the container */
+    transform: translate(-50%, -50%); /* Center the element */
+    width: 100px; /* Diameter of the circle */
+    height: 100px; /* Diameter of the circle */
+    background-color: #4CAF50; /* Lighten the color */
+    }
+
+    .animated-element {
+    position: absolute;
+    bottom: 200px; /* Position at the bottom center of the container */
+    left: 0; /* Center horizontally */
+    transform: translate(-50%, 0); /* Center the element */
+    width: 50px; /* Element size */
+    height: 50px; /* Element size */
+    background-color: #4CAF50;
+    text-align: center;
+    line-height: 50px;
+
+    }
+
+    .around {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-color: #4CAF50;
+    }
+
+    @keyframes circle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    }
+
+    @keyframes offsetCircle {
+    0% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+    }
+
+    .circle-container {
+    animation: circle 10s infinite linear;
+    }
+
+    .animated-element {
+    animation: offsetCircle 10s infinite linear;
+    }
+
+    .animated-element-insider {
+    animation: circle 4s infinite linear;
+    }
+
+    .around {
+    animation: offsetCircle 4s infinite linear;
+    }
+
+
+
+
+  </style>
+</head>
+<body>
+  <div class="animated-box">Hello</div>
+  <div class="circle-container">
+    <div class="animated-element">
+      <div>move</div>
+      <div class="animated-element-insider">
+        <div class="around">around</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

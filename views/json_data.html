@@ -63,6 +63,37 @@
       opacity: 0.5;
     }
 
+    #small-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+    #danmakuContainer {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #FFBE98;
+    }
+
+    .danmaku {
+      position: absolute;
+      white-space: nowrap;
+      color: #fff;
+      font-size: 20px;
+      opacity: 0.8;
+    }
+
+    @keyframes moveLeft {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -70,7 +101,9 @@
     <h1>German Vocabulary Automation</h1>
   </div>
   <div id="container"></div>
+  <div id="small-list"></div>
   <p id="target">animation</p>
+  <div id="danmakuContainer">a</div>
   <script src="/scripts/json_data.js"></script>
 </body>
 </html>
