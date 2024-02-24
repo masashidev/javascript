@@ -177,7 +177,66 @@ class CanvasInput {
   }
 }
 
+class EdgeButton {
+  constructor(diagram, canvas, x, y, width = 200, height = 30, text = "Add Edge") {
+    this.diagram = diagram;
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.text = text;
+    this.draw();
+  }
+
+  draw() {
+    this.ctx.clearRect(this.x - borderWidth - 50, this.y - borderWidth, this.width + 2 * borderWidth, this.height + 2 * borderWidth);
+
+    // Draw the input box
+    this.ctx.fillStyle = "#FFF";
+    this.ctx.fillRect(this.x, this.y, this.width, this.height);
+
+    // Draw the border
+    this.ctx.strokeStyle = "#000";
+    this.ctx.strokeRect(this.x, this.y, this.width, this.height);
+
+    // Draw the text or placeholder
+    this.ctx.fillStyle = "#000";
+    this.ctx.font = "16px Arial";
+    this.ctx.textBaseline = "top";
+    this.ctx.fillText(this.text, this.x + 50, this.y + 10);
+  }
+
+  initializeEvents() {
+    this.canvas.addEventListener('pointerdown', this.handlePointerdown.bind(this));
+  }
+
+  clickDetection(event) {
+    const rect = this.canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    return x > this.x && x < this.x + this.width && y > this.y && y < this.y + this.height;
+  }
+
+  handlePointerdown(event) {
+    const rect = this.canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    if (this.clickDetection(event)) {
+        this.active = true;
+        console.log('active', this.active);
+        this.focusAnimationToggle();
+        this.draw();
+    }
+  }
+}
+
+
 const diagram = new Diagram();
 const canvasCenter = { x: canvas.width / 2, y: canvas.height / 2 };
 const input = new CanvasInput(diagram, canvas, canvasCenter.x - 100, canvasCenter.y - 15);
 input.initializeEvents();
+const edgeButton = new EdgeButton(diagram, canvas, canvasCenter.x - 100, canvasCenter.y + 30);
+edgeBu

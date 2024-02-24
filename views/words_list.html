@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    #word-list {
+      /* patterns of list-style-type
+      none
+      circle
+      square
+      disc
+      decimal
+      lower-alpha
+      upper-alpha
+      lower-roman
+      upper-roman
+      */
+
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    #word-list li {
+      margin: 5px;
+      transition: background-color 0.15s;
+    }
+
+    #word-list li:hover {
+      background-color: #a9c8f7;
+      cursor: pointer;
+    }
+
+    .random-button {
+      margin: 2px;
+      padding: 10px;
+      font-size: 1rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>words list</h1>
+
+  <button id="download">Download Words</button>
+  <input type="file" id="upload" style="display: none;" accept=".json"/>
+  <label for="upload">Upload Words</label>
+
+
+  <form action="/words" method="post" id="myForm">
+    <input type="text" name="word" id="word">
+    <input type="submit" value="submit">
+  </form>
+
+  <h2 style="display: inline;"
+  >Random Words Combination</h2>
+  <button class="random-button">Random</button>
+  <button class="previous-button">Previous</button>
+  <button id="sort-button">Sort</button>
+  <button id="reverse-button">Reverse</button>
+  <button id="clear-button">Clear</button>
+  <p> => <span id="random-word-display"></span></p>
+
+  <ul id="word-list">
+  </ul>
+
+  <script src="/scripts/header.js"></script>
+  <script src="/scripts/words_list2.js"></script>
+</body>
+</html>
